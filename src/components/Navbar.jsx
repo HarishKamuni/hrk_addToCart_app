@@ -1,10 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const cart = useSelector((item) => item.user);
   return (
     <div className="bg-slate-300 h-[60px]">
       <nav className="flex justify-between px-8 items-center py-4">
-        <span>Navbar</span>
+        <Link to={'/'}>Navbar</Link>
         <div className="flex items-center">
           <input
             type="text"
@@ -15,12 +18,15 @@ const Navbar = () => {
         </div>
         <div className="flex justify-between gap-4">
           <div className="">
-            <span className="text-2xl relative">
+            <Link
+              to={'/addToCart'}
+              className="text-2xl relative cursor-pointer"
+            >
               🛒
               <span className="absolute bg-red-500 px-1 text-white rounded-full -left-1 -top-1 text-sm">
-                0
+                {cart.carts.length}
               </span>
-            </span>
+            </Link>
           </div>
 
           <span>user icon</span>
